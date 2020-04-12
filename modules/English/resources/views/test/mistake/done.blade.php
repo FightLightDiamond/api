@@ -1,0 +1,40 @@
+@extends('en::test.layout')
+
+@section('content')
+    <h1>Điền vào chỗ trống</h1>
+    <form action="{{route('test.mistake.done')}}?page={{$page}}" method="POST" id="formTest">
+        {{csrf_field()}}
+        @foreach($questions as $k => $question)
+            <div class="form-group" id="{{$k+1}}">
+                <strong>{{__('label.question')}} {{++$k}}</strong>
+                <input type="checkbox" data="{{$k}}" class="unsure pull-right" data-toggle="tooltip"
+                       data-placement="bottom" title="Bạn chưa chắc chắn ">
+            </div>
+            <div class="form-group speakEnglish">{!! \ViewFa::mistake($question) !!}</div>
+            <table class="table">
+                @if(isset($replies[$answer = 'answer' . $question->id]))
+                    @foreach(REPLIES as $i => $rep)
+                        <tr class="@if($exactly[$question->id] && $replies[$answer] == $i) bg-success @endif">
+                            <td width="20px">
+                                <input type="radio" value="{{$i}}"
+                                       @if($exactly[$question->id] && $replies[$answer] == $i) checked
+                                       @endif  name="answer{{$question->id}}">
+                            </td>
+                            <td class="speakEnglish">{{$question->$rep}}</td>
+                        </tr>
+                    @endforeach
+                @else
+                    @foreach(REPLIES as $i => $rep)
+                        <tr>
+                            <td width="20px">
+                                <input type="radio" value="{{$i}}" name="answer{{$question->id}}">
+                            </td>
+                            <td class="speakEnglish">{{$question->$rep}}</td>
+                        </tr>
+                    @endforeach
+                @endif
+            </table>
+            <hr>
+        @endforeach
+    </form>
+@endsection

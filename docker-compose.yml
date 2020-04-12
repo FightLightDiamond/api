@@ -1,0 +1,33 @@
+version: '3'
+services:
+  api:
+    container_name: cuongpmapi
+    build: .
+    ports:
+      - "8006:8006"
+    volumes:
+      - .:/var/www/cuongpmapi
+    links:
+      - redis
+      - db
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "63796:6379"
+  echo-server:
+    image: "lagun4ik/laravel-echo-server"
+    ports:
+      - "60001:6001"
+    volumes:
+      - .:/app
+    links:
+      - redis
+      - api
+  db:
+    image: "mariadb:10.2"
+    environment:
+      MYSQL_ROOT_PASSWORD: "1"
+      MYSQL_DATABASE: "cuongpmapi"
+    ports:
+      - "33066:3306"
+
