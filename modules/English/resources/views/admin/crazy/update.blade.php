@@ -50,7 +50,7 @@
                                     <span class="btn btn-default no">{{$detail['no']}}</span>
                                 </td>
                                 <td>
-                                    <input type="number" required class="form-control" name="times[{{$detail['id']}}]" value="{{$detail[TIME_COL]}}">
+                                    <input type="number" required class="form-control" name="times[{{$detail['id']}}]" value="{{$detail['time']}}">
                                 </td>
                                 <td>
                                     <input required class="form-control englishInput" name="sentences[{{$detail['id']}}]" value="{{$detail['sentence']}}">

@@ -44,11 +44,6 @@ class LessonRepositoryEloquent extends BaseRepository implements LessonRepositor
     public function edit($id)
     {
         $lesson = $this->find($id);
-
-        if (empty($lesson)) {
-            return $lesson;
-        }
-
         return compact('lesson');
     }
 

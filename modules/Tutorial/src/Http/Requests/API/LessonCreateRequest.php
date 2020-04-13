@@ -25,23 +25,16 @@ class LessonCreateRequest extends FormRequest
     {
         return [
             'title' => 'required',
-'intro' => 'required',
-'content' => 'required',
-'section_id' => 'required',
-'views' => 'required',
-'last_view' => 'required',
-'created_by' => 'required',
-'updated_by' => 'required',
-'is_active' => 'required',
-'no' => 'required',
-
+            'intro' => 'required',
+            'content' => 'required',
+            'section_id' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

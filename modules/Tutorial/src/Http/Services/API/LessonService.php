@@ -8,6 +8,7 @@
 
 namespace Tutorial\Http\Services\API;
 
+use Illuminate\Support\Facades\Auth;
 use Tutorial\Http\Repositories\LessonRepository;
 
 class LessonService
@@ -34,6 +35,7 @@ class LessonService
 
     public function store($input)
     {
+        $input['created_by'] = \auth('api')->id();
         return $this->repository->store($input);
     }
 
@@ -50,7 +52,7 @@ class LessonService
     public function update($input, $id)
     {
         $lesson = $this->repository->find($id);
-
+        $input['updated_at'] = \auth('api')->id();
         return $this->repository->change($input, $lesson);
     }
 

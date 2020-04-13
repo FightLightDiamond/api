@@ -7,7 +7,7 @@
 
 namespace Tutorial\Http\Resources\API;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class LessonResourceCollection extends ResourceCollection

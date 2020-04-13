@@ -42,6 +42,7 @@ class TutorialServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database');
         $this->loadRoutesFrom(__DIR__ . '/../routers/router.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routers/api.php');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'tut');
         $this->loadJsonTranslationsFrom(__DIR__ . '/../resources/lang');
 

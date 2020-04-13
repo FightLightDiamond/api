@@ -2,9 +2,9 @@
 
 namespace Tutorial\Http\Resources\API;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class LessonResource extends Resource
+class LessonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

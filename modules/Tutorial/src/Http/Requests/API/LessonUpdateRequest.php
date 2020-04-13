@@ -24,24 +24,19 @@ class LessonUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-'intro' => 'required',
-'content' => 'required',
-'section_id' => 'required',
-'views' => 'required',
-'last_view' => 'required',
-'created_by' => 'required',
-'updated_by' => 'required',
-'is_active' => 'required',
-'no' => 'required',
-
+            'title' => '',
+            'intro' => '',
+            'content' => '',
+            'section_id' => '',
+            'is_active' => '',
+            'no' => '',
         ];
     }
 
     public function messages()
     {
         return [
-            
+
         ];
     }
 }
