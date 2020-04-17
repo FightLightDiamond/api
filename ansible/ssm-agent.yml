@@ -1,0 +1,18 @@
+---
+- hosts: node
+  become: yes
+  become_user: root
+  tasks:
+  - name: Install SSM Agent
+    yum:
+      name: https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+      state: installed
+      update_cache: true
+    notify:
+    - Start SSM Agent
+  handlers:
+  - name: Start SSM Agent
+    systemd:
+      name: amazon-ssm-agent
+      state: started
+      enabled: yes

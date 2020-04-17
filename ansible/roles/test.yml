@@ -1,0 +1,17 @@
+# Simple Ansible Playbook1.yml
+-
+  name: Play 1
+  hosts: local
+  tasks:
+    - name: Execute command "date"
+      command: date
+    - name: Execute script on server
+      script: /var/www/ansible/roles/test.sh
+    - name: Install httpd service
+      yum:
+        name: nginx
+        state: present
+    - name: Start web server
+      service:
+        name: nginx
+        state: started

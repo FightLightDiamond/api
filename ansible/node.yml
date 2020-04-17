@@ -1,0 +1,7 @@
+---
+# Chạy trên local
+- hosts: ami
+#  become: yes
+#  become_user: root
+  roles:
+  - node

@@ -1,0 +1,41 @@
+# roles/awslogs/tasks/main.yml
+- name: "Download Install Script."
+  get_url:
+      url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+      dest: /tmp/awslogs-agent-setup.py
+      mode: 550
+
+- name: "Create /etc/awslogs."
+  file:
+      path: /etc/awslogs
+      state: directory
+      mode: 755
+
+- name: put awslogs config files
+  template:
+    src: "{{ item.value.template }}"
+    dest: "{{ item.value.path }}"
+    owner: "{{ item.value.owner | default('root') }}"
+    group: "{{ item.value.group | default('root') }}"
+    mode: "{{ item.value.mode | default('0644') }}"
+  with_dict: "{{ my_vars.middlewares.awslogs.configs.config_file }}"
+
+- name: "Install AWS CloudWatch Logs Agent."
+  shell: "python /tmp/awslogs-agent-setup.py -n -r {{ my_vars.middlewares.awslogs.configs.region }} -c /etc/awslogs/awslogs.conf"
+  become: yes
+  args:
+    executable: /bin/bash
+
+- name: start awslogs
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: awslogs
+- name: enable awslogs
+  systemd:
+    enabled: yes
+    daemon_reload: yes
+    name: awslogs
+
+
+

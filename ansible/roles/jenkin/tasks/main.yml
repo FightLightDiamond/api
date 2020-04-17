@@ -1,0 +1,17 @@
+---
+# tasks file for jenkin
+- name: Install java-1.8.0-openjdk-devel
+  yum:
+    name: java-1.8.0-openjdk-devel
+    state: installed
+- name: Import the GPG key using
+  shell: "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo"
+- name: Add the repository
+  shell: "rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key"
+- name: Jenkins Install
+  yum:
+    name: jenkins
+    state: installed
+  notify:
+    - Start jenkins
+    - Enable jenkins

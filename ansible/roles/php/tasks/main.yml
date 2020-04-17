@@ -1,0 +1,41 @@
+---
+# tasks file for php
+- name: yum check | Check for updates
+  yum:
+    list: updates
+    update_cache: true
+- name: yum update
+  shell: 'yum update -y'
+  args:
+    warn: no
+- name: Install remi repo
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: latest
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+- name: yum update
+  shell: 'yum-config-manager --enable remi-php72'
+  args:
+    warn: no
+- name: yum update
+  shell: 'yum update -y'
+  args:
+    warn: no
+- name: Install php72
+  yum:
+    name: php72
+    state: latest
+- name: Install extension php72
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ phpextensions }}"
+- name: "php72 to php"
+  shell: "cp /usr/bin/php72 /usr/bin/php"
+  args:
+    warn: no
+- name: Composer install
+  shell: "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer"

@@ -4,6 +4,7 @@ namespace Tutorial\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Tutorial\Http\Requests\API\LessonCreateRequest;
 use Tutorial\Http\Requests\API\LessonUpdateRequest;
 use Tutorial\Http\Resources\API\LessonResource;
@@ -62,6 +63,7 @@ class LessonAPIController extends Controller
     {
         try {
             $input = $request->all();
+
             $data = $this->service->index($input);
 
             return new LessonResourceCollection($data);
@@ -90,7 +92,10 @@ class LessonAPIController extends Controller
     {
         try {
             $input = $request->all();
-            $lesson = $this->service->store($input);
+
+            $lesson = Cache::remember('users', 3600, function () use ($input) {
+                return $this->service->store($input);
+            });
 
             return new LessonResource($lesson);
         } catch (\Exception $exception) {

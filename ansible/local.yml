@@ -1,0 +1,11 @@
+---
+# Chạy trên local
+- hosts: 127.0.0.1
+  become: yes
+  become_user: root
+  roles:
+  - nginx
+  - php
+  - nodejs
+#  - ansible
+#  - cloudwatchlog

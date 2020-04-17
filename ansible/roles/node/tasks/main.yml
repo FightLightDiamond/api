@@ -1,0 +1,5 @@
+- name: "Copy ssh key"
+  shell: chmod 600 fec.pem && cat ~/.ssh/id_rsa.pub | ssh -i fec.pem {{ item }} -oStrictHostKeyChecking=no "cat - >> ~/.ssh/authorized_keys"
+#  debug:
+#    msg: "ssh -i fec.pem {{ item }}"
+  with_items: "{{ hosts }}"

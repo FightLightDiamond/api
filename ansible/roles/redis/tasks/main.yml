@@ -1,0 +1,9 @@
+---
+# tasks file for redis
+- name: Install redis
+  yum:
+    name: redis
+    state: latest
+  notify:
+   - "Start redis"
+   - "Enable redis"

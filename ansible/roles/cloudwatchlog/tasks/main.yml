@@ -1,0 +1,26 @@
+---
+- name: "Download Install Script."
+  get_url:
+    url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    dest: /tmp/awslogs-agent-setup.py
+    mode: 550
+- name: "Create /etc/awslogs."
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
+- name: Template a file to /etc/awslogs/awslogs.conf
+  template:
+    src: etc/awslogs/awslogs.conf.j2
+    dest: /etc/awslogs/awslogs.conf
+    mode: '0644'
+- name: Copy file with owner and permissions
+  copy:
+    src: /etc/awslogs/awslogs.conf
+    dest: /etc/awslogs/awslogs.conf
+    mode: '0644'
+- name: "Install AWS CloudWatch Logs Agent."
+  shell: "python awslogs-agent-setup.py -n -r {{ region }} -c /etc/awslogs/awslogs.conf"
+  notify:
+  - "Start awslogs"
+  - "Enable awslogs"

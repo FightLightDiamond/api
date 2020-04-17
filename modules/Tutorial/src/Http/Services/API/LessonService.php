@@ -28,11 +28,6 @@ class LessonService
         return $this->repository->myPaginate($input);
     }
 
-    public function create()
-    {
-        return [];
-    }
-
     public function store($input)
     {
         $input['created_by'] = \auth('api')->id();
@@ -41,12 +36,18 @@ class LessonService
 
     public function show($id)
     {
-       return $this->repository->find($id);
+        $relation = [
+            'section',
+            'section.tutorial.sections:id,tutorial_id,name',
+            'section.lessons:id,section_id,title'
+        ];
+
+        return $this->repository->with($relation)->find($id);
     }
 
     public function edit($id)
     {
-       return $this->repository->find($id);
+        return $this->repository->find($id);
     }
 
     public function update($input, $id)
@@ -60,7 +61,7 @@ class LessonService
     {
         $lesson = $this->repository->find($id);
 
-		if (! empty($lesson)) {
+        if (!empty($lesson)) {
             $this->repository->delete($id);
         }
 

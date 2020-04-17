@@ -1,0 +1,6 @@
+# roles/amazon-ssm-agent/handlers/main.yml
+- name: restart amazon-ssm-agent service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: amazon-ssm-agent

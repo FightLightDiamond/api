@@ -1,0 +1,93 @@
+#
+# Playbook1 for creating an ec2 instance
+#
+# ansible-playbook aws-ftps.yml
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  become: False
+  vars:
+    region: ap-northeast-1
+    ipaddress: XXX.XXX.XXX.XXX/32 # ⇒⇒⇒ replace by your ip to access to ec2
+    key_name: ec2-ftps
+  tasks:
+  - ec2_key:
+      region: "{{ region  }}"
+      name: "{{ key_name  }}" # ⇒⇒⇒ replace by your secret-key
+    register: _key
+  - copy:
+      content: "{{ _key.key.private_key }}"
+      dest: "~/.ssh/{{ _key.key.name }}.pem"
+      mode: 0600
+    when: _key.changed
+  - ec2_vpc_net:
+      region: "{{ region }}"
+      name: vpc-ftps
+      cidr_block: 10.0.0.0/16
+    register: _vpc
+  - ec2_vpc_igw:
+      region: "{{ region }}"
+      vpc_id: "{{ _vpc.vpc.id }}"
+    register: _igw
+  - ec2_vpc_subnet:
+      region: "{{ region }}"
+      vpc_id: "{{ _vpc.vpc.id }}"
+      cidr: 10.0.0.0/24
+    register: _subnet
+  - ec2_vpc_route_table:
+      region: "{{ region }}"
+      vpc_id: "{{ _vpc.vpc.id }}"
+      tags:
+        Name: Public
+      subnets:
+      - "{{ _subnet.subnet.id }}"
+      routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ _igw.gateway_id  }}"
+    register: _public_route_table
+  # Security Group
+  - ec2_group:
+      region: "{{ region }}"
+      vpc_id: "{{ _vpc.vpc.id }}"
+      name: sg_ssh
+      description: sg-ssh
+      rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: "{{ ipaddress }}"
+    register: _group_ssh
+  - ec2_group:
+      region: "{{ region }}"
+      vpc_id: "{{ _vpc.vpc.id }}"
+      name: sg_ftps
+      description: sg-ftps
+      rules:
+      - proto: tcp
+        from_port: 21
+        to_port: 21
+        cidr_ip: "{{ ipaddress }}"
+      - proto: tcp
+        from_port: 50000
+        to_port: 50010
+        cidr_ip: "{{ ipaddress }}"
+    register: _group_ftps
+  - ec2_instance:
+      name: "ftps"
+      key_name: "{{ key_name }}"
+      vpc_subnet_id: "{{ _subnet.subnet.id }}"
+      instance_type: t3.micro
+      image_id: ami-0c3fd0f5d33134a76
+      security_groups:
+      - "{{ _group_ssh.group_id}}"
+      - "{{ _group_ftps.group_id}}"
+      network:
+        assign_public_ip: true
+    register: _instance
+  - ec2_eip:
+      region: "{{ region }}"
+      device_id: "{{ item }}"
+    loop: "{{ _instance.instance_ids }}"
+    register: _eip
+  - debug:
+      msg: "Allocated IP is {{ _eip.results[0].public_ip }}"

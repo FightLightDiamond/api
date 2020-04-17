@@ -1,0 +1,4 @@
+---
+# handlers file for php
+- name: Composer install
+  shell: "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer"

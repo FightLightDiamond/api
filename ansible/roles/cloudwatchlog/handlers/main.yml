@@ -1,0 +1,10 @@
+---
+- name: Start awslogs
+  systemd:
+    state: started
+    name: awslogs
+- name: Enable awslogs
+  systemd:
+    name: awslogs
+    enabled: yes
+    masked: no

@@ -1,0 +1,26 @@
+---
+- name: Install Httpd
+  yum:
+    name: httpd
+    state: installed
+    update_cache: true
+  notify:
+  - Start Httpd
+- name: Create Web Root
+  file:
+    path: '{{ docroot }}'
+    mode: 775
+    state: directory
+    owner: apache
+    group: apache
+  notify:
+  - Reload Httpd
+- name: Deploy config httpd
+  template:
+    src: "httpd.conf.j2"
+    dest: "/var/www/html/httpd.conf"
+    mode: 0644
+    owner: root
+    group: root
+    backup: yes
+    remote_src: no

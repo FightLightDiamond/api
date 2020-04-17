@@ -1,0 +1,6 @@
+server {
+    # Bắt buộc sử dụng HTTPS
+    listen 8080 default_server;
+    server_name {{ domain }};
+    return 301 https://$server_name$request_uri;
+}

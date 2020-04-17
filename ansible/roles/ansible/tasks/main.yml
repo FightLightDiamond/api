@@ -1,0 +1,8 @@
+---
+- name: Install ansible
+  yum:
+    name: ansible
+    state: installed
+    update_cache: true
+  notify:
+  - Ping ansible

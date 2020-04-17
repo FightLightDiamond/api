@@ -1,0 +1,4 @@
+---
+# vars file for node
+hosts:
+  - centos@13.229.125.101

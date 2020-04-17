@@ -1,0 +1,4 @@
+---
+# handlers file for nodejs
+- name: Install n
+  shell: npm i -g n

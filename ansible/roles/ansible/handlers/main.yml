@@ -1,0 +1,6 @@
+---
+# handlers file for ansible
+- name: Ping ansible
+  service:
+    name: ansible
+    command: ansible -m ping localhost

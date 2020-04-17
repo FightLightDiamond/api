@@ -1,0 +1,10 @@
+---
+# handlers file for redis
+- name: Start redis
+  systemd:
+    name: redis
+    state: latest
+- name: Start redis
+  systemd:
+    name: redis
+    state: latest

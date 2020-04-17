@@ -1,0 +1,7 @@
+---
+# Chạy trên local
+- hosts: node
+  become: yes
+  become_user: root
+  roles:
+  - php

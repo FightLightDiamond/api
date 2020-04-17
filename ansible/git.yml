@@ -1,0 +1,10 @@
+---
+- hosts: node
+  become: yes
+  become_user: root
+  tasks:
+  - name: Install Git
+    yum:
+      name: git
+      state: installed
+      update_cache: true

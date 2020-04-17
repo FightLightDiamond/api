@@ -1,0 +1,6 @@
+# roles/awslogs/handlers/main.yml
+- name: restart awslogs service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: awslogs

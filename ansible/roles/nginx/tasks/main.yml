@@ -1,0 +1,56 @@
+---
+# tasks file for nginx
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: installed
+    update_cache: true
+#    owner: root
+#    group: root
+  notify:
+  - Start Nginx
+  - Enable Nginx
+
+#- name: Disable Default Site Configuration
+#  file:
+#    dest: /etc/nginx/sites-enabled/default
+#    state: absent
+#
+## `dest` in quotes as a variable is used!
+#- name: Add SFH Site Config
+#  register: sfhconfig
+#  template:
+#    src: serversforansible.com.j2
+#    dest: '/etc/nginx/sites-available/{{ domain }}.conf'
+#    owner: root
+#    group: root
+#
+## `src`/`dest` in quotes as a variable is used!
+#- name: Enable SFH Site Config
+#  file:
+#    src: '/etc/nginx/sites-available/{{ domain }}.conf'
+#    dest: '/etc/nginx/sites-enabled/{{ domain }}.conf'
+#    state: link
+#
+## `dest` in quotes as a variable is used!
+#- name: Create Web root
+#  file:
+#    dest: '/var/www/{{ domain }}/public'
+#    mode: 775
+#    state: directory
+#    owner: nginx
+#    group: nginx
+#  notify:
+#  - Reload Nginx
+
+# `dest` in quotes as a variable is used!
+#- name: Web Root Permissions
+#  file:
+#    dest: '/var/www/{{ domain }}'
+#    mode: 775
+#    state: directory
+#    owner: nginx
+#    group: nginx
+#    recurse: yes
+#  notify:
+#  - Reload Nginx

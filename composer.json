@@ -47,6 +47,7 @@
             "App\\": "app/",
             "IO\\": "modules/IO/src",
             "English\\": "modules/English/src",
+            "GCard\\": "modules/GCard/src",
             "Tutorial\\": "modules/Tutorial/src"
         },
         "classmap": [

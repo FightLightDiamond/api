@@ -1,0 +1,10 @@
+---
+# tasks file for nodejs
+
+- name: Download nodejs
+  shell: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+- name: Install nodejs
+  yum:
+   name: nodejs
+   state: installed
+  notify: Install n

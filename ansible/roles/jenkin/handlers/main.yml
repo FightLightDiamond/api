@@ -1,0 +1,11 @@
+---
+# handlers file for jenkin
+- name: Start jenkins
+  systemd:
+    state: started
+    name: jenkins
+- name: Enable jenkins
+  systemd:
+    name: jenkins
+    enabled: yes
+    masked: no

@@ -1,0 +1,14 @@
+---
+- hosts: ec2_ectest_6
+  become: true
+  user: vagrant
+  vars:
+    env_apache_conf: local
+  roles:
+    - amazon-ssm-agent
+    - awslogs
+  tasks:
+    - name: disable selinux
+      selinux:
+        policy: targeted
+        state: permissive
