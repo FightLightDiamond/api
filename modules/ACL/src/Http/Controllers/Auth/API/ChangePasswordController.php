@@ -30,7 +30,7 @@ class ChangePasswordController extends Controller
 
             return response()->json(['data' => $user]);
         } catch (\Exception $exception) {
-            logger($exception->getMessage());
+            logger($exception->getMessage(), 500);
             return response()->json($exception->getMessage(), 500);
         }
     }

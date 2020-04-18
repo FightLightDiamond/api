@@ -1,6 +1,6 @@
 <?php
 
-namespace GCard\Policies\API;
+namespace GCard\Policies;
 
 use GCard\Models\Hero;
 use App\User;

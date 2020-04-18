@@ -1,6 +1,6 @@
 <?php
 
-namespace ACL\Policies\API;
+namespace ACL\Policies;
 
 use ACL\Models\Admin;
 use App\User;

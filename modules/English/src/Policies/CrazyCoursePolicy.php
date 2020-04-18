@@ -1,6 +1,6 @@
 <?php
 
-namespace English\Policies\API;
+namespace English\Policies;
 
 use English\Models\CrazyCourse;
 use App\User;

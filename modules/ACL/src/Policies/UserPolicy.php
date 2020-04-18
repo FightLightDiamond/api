@@ -1,6 +1,6 @@
 <?php
 
-namespace ACL\Policies\API;
+namespace ACL\Policies;
 
 use ACL\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

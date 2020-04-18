@@ -1,6 +1,6 @@
 <?php
 
-namespace Tutorial\Policies\API;
+namespace Tutorial\Policies;
 
 use Tutorial\Models\UserTutorial;
 use App\User;

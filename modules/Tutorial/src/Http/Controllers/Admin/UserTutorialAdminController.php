@@ -67,7 +67,7 @@ class UserTutorialAdminController extends Controller
 //           return new UserTutorialResourceCollection($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -101,7 +101,7 @@ class UserTutorialAdminController extends Controller
         } catch (\Exception $exception) {
             logger($exception);
             session()->flash('error', $exception->getMessage());
-//            return response()->json($exception->getMessage());
+//            return response()->json($exception->getMessage(), 500);
         }
 
         return back();
@@ -129,7 +129,7 @@ class UserTutorialAdminController extends Controller
             return new UserTutorialResource($userTutorial);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -157,7 +157,7 @@ class UserTutorialAdminController extends Controller
             return new UserTutorialResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -182,7 +182,7 @@ class UserTutorialAdminController extends Controller
 //            return new UserTutorialResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-//            return response()->json($exception->getMessage());
+//            return response()->json($exception->getMessage(), 500);
             session()->flash('error', $exception->getMessage());
         }
 

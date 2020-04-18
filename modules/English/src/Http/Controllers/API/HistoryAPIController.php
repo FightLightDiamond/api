@@ -47,7 +47,7 @@ class HistoryAPIController extends Controller
             return response()->json(compact('data'));
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 }
