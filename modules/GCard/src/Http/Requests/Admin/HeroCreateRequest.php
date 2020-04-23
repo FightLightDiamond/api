@@ -25,22 +25,21 @@ class HeroCreateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-'nickname' => 'required',
-'role' => 'required',
-'sayings' => 'required',
-'class_id' => 'required',
-'image' => 'required',
-'element_id' => 'required',
-'publish_time' => 'required',
-'status' => 'required',
-
+            'nickname' => 'required',
+            'role' => 'required',
+            'sayings' => 'required',
+            'class_id' => 'required',
+            'image' => 'required',
+            'element_id' => 'required',
+            'publish_time' => '',
+            'status' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

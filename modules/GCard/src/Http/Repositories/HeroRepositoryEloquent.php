@@ -38,6 +38,7 @@ class HeroRepositoryEloquent extends BaseRepository implements HeroRepository
 
     public function store($input)
     {
+        $input = $this->standardized($input, $this->makeModel());
         return $this->create($input);
     }
 
@@ -45,15 +46,13 @@ class HeroRepositoryEloquent extends BaseRepository implements HeroRepository
     {
         $hero = $this->find($id);
 
-        if (empty($hero)) {
-            return $hero;
-        }
-
         return compact('hero');
     }
 
     public function change($input, $data)
     {
+        $input = $this->standardized($input, $data);
+
         return $this->update($input, $data->id);
     }
 
@@ -67,7 +66,23 @@ class HeroRepositoryEloquent extends BaseRepository implements HeroRepository
 
     private function standardized($input, $data)
     {
-        return $data->uploads($input);
+        $input = $data->uploads($input);
+
+        $filePath = storage_path($input['image']);
+
+        $image = imagecreatefrompng($filePath);
+        $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+        imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+        imagealphablending($bg, TRUE);
+        imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+        imagedestroy($image);
+        $quality = 50; // 0 = worst / smaller file, 100 = better / bigger file
+        imagejpeg($bg, $filePath . ".jpg", $quality);
+        imagedestroy($bg);
+
+        dd($filePath . ".jpg");
+
+        return $input;
     }
 
     public function destroy($data)

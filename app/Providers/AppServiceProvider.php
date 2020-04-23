@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(now()->addDays(30));
         Passport::pruneRevokedTokens();
 
-        JsonResource::withoutWrapping();
+//        JsonResource::withoutWrapping();
     }
 
     /**

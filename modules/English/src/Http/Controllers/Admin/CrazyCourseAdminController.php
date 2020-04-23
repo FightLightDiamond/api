@@ -92,7 +92,7 @@ class CrazyCourseAdminController extends Controller
             $input = $request->all();
             $crazyCourse = $this->service->store($input);
 
-            return new CrazyCourseResource($crazyCourse);
+            return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -118,7 +118,7 @@ class CrazyCourseAdminController extends Controller
         try {
             $crazyCourse = $this->service->show($id);
 
-            return new CrazyCourseResource($crazyCourse);
+            return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -143,10 +143,11 @@ class CrazyCourseAdminController extends Controller
     public function update(CrazyCourseUpdateRequest $request, $id)
     {
         $input = $request->all();
-        try {
-            $data = $this->service->update($input, $id);
 
-            return new CrazyCourseResource($data);
+        try {
+            $crazyCourse = $this->service->update($input, $id);
+
+            return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -169,9 +170,9 @@ class CrazyCourseAdminController extends Controller
     public function destroy($id)
     {
         try {
-            $data = $this->service->destroy($id);
+            $crazyCourse = $this->service->destroy($id);
 
-            return new CrazyCourseResource($data);
+            return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);

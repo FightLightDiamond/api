@@ -22,6 +22,11 @@ class Heroes extends Migration
             $table->string('class_id');
             $table->string('image');
             $table->string('element_id');
+            $table->unsignedInteger('atk');
+            $table->unsignedInteger('def');
+            $table->unsignedInteger('hp');
+            $table->unsignedInteger('spd');
+            $table->string('atk');
             $table->dateTime('publish_time')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

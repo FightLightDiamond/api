@@ -2,19 +2,34 @@
 
 namespace ACL\Models;
 
-
+use Illuminate\Notifications\Notifiable;
 use Cuongpm\Modularization\MultiInheritance\ModelsTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
-use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model implements Transformable
+class Admin extends Authenticatable
 {
+    use Notifiable;
     use TransformableTrait;
     use ModelsTrait;
+    use SoftDeletes;
 
     public $table = 'admins';
-    public $fillable = ['name', 'email', 'password', 'remember_token', 'is_active'];
+    public $fillable = ['name', 'email', 'password', 'remember_token'];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public $fileUpload = ['image' => 1];
+    protected $pathUpload = ['image' => '/images/admins'];
+    protected $thumbImage = [
+        'image' => [
+            '/thumbs/' => [
+
+            ]
+        ]
+    ];
 }
+

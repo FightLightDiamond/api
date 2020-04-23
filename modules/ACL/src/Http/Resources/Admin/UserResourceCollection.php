@@ -8,9 +8,9 @@
 namespace ACL\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\JsonResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UserResourceCollection extends JsonResourceCollection
+class UserResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {

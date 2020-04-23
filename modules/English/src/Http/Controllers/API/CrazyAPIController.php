@@ -146,7 +146,7 @@ class CrazyAPIController extends Controller
         try {
             $data = $this->service->update($input, $id);
 
-            return new CrazyResource($data);
+            return response()->json(new CrazyResource($crazy));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -171,7 +171,7 @@ class CrazyAPIController extends Controller
         try {
             $data = $this->service->destroy($id);
 
-            return new CrazyResource($data);
+            return response()->json(new CrazyResource($crazy));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);

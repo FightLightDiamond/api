@@ -8,9 +8,9 @@
 namespace English\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\JsonResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BlogResourceCollection extends JsonResourceCollection
+class BlogResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {

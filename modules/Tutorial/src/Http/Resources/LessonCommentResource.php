@@ -3,7 +3,7 @@
 namespace Tutorial\Http\Resources;
 
 
-use Illuminate\Http\Resources\Json\JsonResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 class LessonCommentResource extends JsonResource
 {

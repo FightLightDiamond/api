@@ -21,7 +21,7 @@ class CrazyReadHistoryService
 
     public function index($input)
     {
-        $input['relationship'] = ['crazy:id,name,crazy_course_id', 'crazy.crazyCourse:id,name'];
+        $input['{relationship}'] = ['crazy:id,name,crazy_course_id', 'crazy.crazyCourse:id,name'];
         $input['sort'] = 'id|desc';
 
         return $this->repository->myPaginate($input);

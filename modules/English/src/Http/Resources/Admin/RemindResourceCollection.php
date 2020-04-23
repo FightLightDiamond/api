@@ -8,9 +8,9 @@
 namespace English\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\JsonResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class RemindResourceCollection extends JsonResourceCollection
+class RemindResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {

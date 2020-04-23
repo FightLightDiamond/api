@@ -21,13 +21,11 @@ class DashboardController
     {
         $data['user'] = User::count();
         $data['course'] = CrazyCourse::count();
-//        $data['course'] = CrazyCourse::count();
         $data['lesson'] = Crazy::count();
         $data['read_history'] = CrazyReadHistory::count();
         $data['write_history'] = CrazyWriteHistory::count();
-//        $data['vocabulary'] = Vocabulary::count();
         $data['contact'] = Contact::count();
 
-        return response()->json(compact('data'));
+        return response()->json($data);
     }
 }

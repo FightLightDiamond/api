@@ -5,7 +5,7 @@
  * MIT: 2e566161fd6039c38070de2ac4e4eadd8024a825
  */
 
-namespace GCard\Cuongpm\Modularization\Tests\Feature\Admin;
+namespace GCard\Tests\Feature\Admin;
 
 
 use Cuongpm\Modularization\MultiInheritance\TestTrait;

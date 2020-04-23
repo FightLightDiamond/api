@@ -8,9 +8,9 @@
 namespace English\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\JsonResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CrazySpeakHistoryResourceCollection extends JsonResourceCollection
+class CrazySpeakHistoryResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {
