@@ -25,11 +25,11 @@ Route::get('dl', function () {
     return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\WPExport(), 'product.csv');
 });
 
-Route::get('woocommerce', function () {
 
-//    const url = 'http://cuongpm.tk:8002'
-//  const ck = 'ck_752b8da883ed65df1faa38106d80ee38cfd87eb5'
-//  const cs = 'cs_9c207d00c8606d755408816d9285b41add33304a'
+
+
+
+Route::get('woocommerce', function () {
 
     $url = 'http://cuongpm.tk:8002';
     $consumer_key = 'ck_752b8da883ed65df1faa38106d80ee38cfd87eb5';
@@ -40,30 +40,84 @@ Route::get('woocommerce', function () {
 
     $woocommerce = new \Automattic\WooCommerce\Client($url, $consumer_key, $consumer_secret, $options);
 
-    $data = [
-        'name' => 'Premium Quality',
-        'type' => 'simple',
-        'regular_price' => '21.99',
-        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        'categories' => [
-            [
-                'id' => 9
-            ],
-            [
-                'id' => 14
-            ]
+//    try {
+    $parameters =  array(
+        'order'=>'asc',
+        'orderby' =>'id',
+        'after' =>'2020-04-21T00:43:48',
+        'before' =>'2020-05-12T00:43:48',
+        'per_page' =>'2',
+        'page' =>'2',
+        'status' =>'processing',
+        'search' =>'Thompson',
+        'product' =>'20',
+    );
+
+    $res = $woocommerce->get('orders', $parameters);
+    $res = $woocommerce->get('shipping/zones', $parameters);
+//    $res = $woocommerce->get('shipping_methods', $parameters);
+
+    dd($res);
+
+//    $raw_data = fopen(public_path('MOCK_DATA.csv'), 'r');
+
+    $email = rand(1, 99999) . 'email@g.vn';
+    $firstName = \Illuminate\Support\Str::random(16);
+    $lastName = \Illuminate\Support\Str::random(16);
+
+    $newCustomers = [
+        'email' => $email,
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+        'username' => '',
+        'billing' => [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'company' => '1',
+            'address_1' => '1',
+            'address_2' => '1',
+            'city' => '1',
+            'state' => '1',
+            'postcode' => '1',
+            'country' => '1',
+            'email' => $email,
+            'phone' => '1'
         ],
-        'images' => [
-            [
-                'src' => 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
-            ],
-            [
-                'src' => 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg'
-            ]
+        'shipping' => [
+            'email' => $email,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'company' => '1',
+            'address_1' => '1',
+            'address_2' => '1',
+            'city' => '1',
+            'state' => '1',
+            'postcode' => '1',
+            'country' => '1',
         ]
     ];
 
-    dd($woocommerce->post('products', $data));
-    dd($woocommerce->get('products'));
+    $res = $woocommerce->post('customers', $newCustomers);
+
+        $req = $lastRequest = $woocommerce->http->getRequest();
+        $url = $lastRequest->getUrl();
+        $method = $lastRequest->getMethod();
+        $reqParameters = $lastRequest->getParameters();
+        $reqHeaders = $lastRequest->getHeaders();
+        $reqBody = $lastRequest->getBody();
+
+        $lastResponse = $woocommerce->http->getResponse();
+        $code = $lastResponse->getCode();
+        $resHeader = $lastResponse->getHeaders();
+        $resBody = $lastResponse->getBody();
+
+        dump(compact('req', 'url', 'method', 'reqParameters', 'reqHeaders', 'reqBody'));
+        dump(compact('code', 'resHeader', 'resBody'));
+dd($res);
+//        return response()->json($res);
+//    } catch (\Automattic\WooCommerce\HttpClient\HttpClientException $exception) {
+//        $exception->getMessage();
+//        $exception->getRequest();
+//        $exception->getResponse();
+//    }
 });

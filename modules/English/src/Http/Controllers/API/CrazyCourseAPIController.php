@@ -144,7 +144,7 @@ class CrazyCourseAPIController extends Controller
     {
         $input = $request->all();
         try {
-            $data = $this->service->update($input, $id);
+            $crazyCourse = $this->service->update($input, $id);
 
             return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {
@@ -169,7 +169,7 @@ class CrazyCourseAPIController extends Controller
     public function destroy($id)
     {
         try {
-            $data = $this->service->destroy($id);
+            $crazyCourse = $this->service->destroy($id);
 
             return response()->json(new CrazyCourseResource($crazyCourse));
         } catch (\Exception $exception) {

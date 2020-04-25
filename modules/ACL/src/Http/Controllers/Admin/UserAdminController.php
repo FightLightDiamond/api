@@ -29,6 +29,7 @@ class UserAdminController extends Controller
         try {
             $input = $request->all();
             $user = $this->repository->myPaginate($input);
+
             return response()->json($user);
         } catch (\Exception $exception) {
             Log::debug($exception);

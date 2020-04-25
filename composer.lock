@@ -222,16 +222,16 @@
         },
         {
             "name": "cuongpm/modularization",
-            "version": "v3.15",
+            "version": "v3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FightLightDiamond/Modularization.git",
-                "reference": "f659d6c0c723a5c6b577ed0a10373b6fd2ab1eeb"
+                "reference": "29b04e17f5560af00bac6cae061354429f067c04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FightLightDiamond/Modularization/zipball/f659d6c0c723a5c6b577ed0a10373b6fd2ab1eeb",
-                "reference": "f659d6c0c723a5c6b577ed0a10373b6fd2ab1eeb",
+                "url": "https://api.github.com/repos/FightLightDiamond/Modularization/zipball/29b04e17f5560af00bac6cae061354429f067c04",
+                "reference": "29b04e17f5560af00bac6cae061354429f067c04",
                 "shasum": ""
             },
             "require": {
@@ -268,7 +268,7 @@
                 "php",
                 "repository"
             ],
-            "time": "2020-04-19T15:57:27+00:00"
+            "time": "2020-04-23T08:16:07+00:00"
         },
         {
             "name": "cuongpm/uploader",
@@ -7206,6 +7206,5 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

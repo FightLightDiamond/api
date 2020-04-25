@@ -62,9 +62,9 @@ class LessonAdminController extends Controller
     {
         try {
             $input = $request->all();
-            $data = $this->service->index($input);
+            $lesson = $this->service->index($input);
 
-           return new LessonResourceCollection($data);
+           return new LessonResourceCollection($lesson);
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -92,7 +92,7 @@ class LessonAdminController extends Controller
             $input = $request->all();
             $lesson = $this->service->store($input);
 
-            return new LessonResource($lesson);
+            return response()->json(new LessonResource($lesson));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -118,7 +118,7 @@ class LessonAdminController extends Controller
         try {
             $lesson = $this->service->show($id);
 
-            return new LessonResource($lesson);
+            return response()->json(new LessonResource($lesson));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -144,9 +144,9 @@ class LessonAdminController extends Controller
     {
         $input = $request->all();
         try {
-            $data = $this->service->update($input, $id);
+            $lesson = $this->service->update($input, $id);
 
-            return new LessonResource($data);
+            return response()->json(new LessonResource($lesson));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -169,9 +169,9 @@ class LessonAdminController extends Controller
     public function destroy($id)
     {
         try {
-            $data = $this->service->destroy($id);
+            $lesson = $this->service->destroy($id);
 
-            return new LessonResource($data);
+            return response()->json(new LessonResource($lesson));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);

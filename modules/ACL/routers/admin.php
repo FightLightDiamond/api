@@ -1,25 +1,31 @@
 <?php
-///**
-// * Created by PhpStorm.
-// * User: cuongpm
-// * Date: 5/8/19
-// * Time: 10:33 AM
-// */
-//
-//
-//Route::name('admin.')
-//    ->namespace('ACL\Http\Controllers\Admin')
-//    ->middleware(['web', 'locale.db'])
-//    ->prefix('admin')
-//    ->group(function () {
+/**
+ * Created by PhpStorm.
+ * User: cuongpm
+ * Date: 5/8/19
+ * Time: 10:33 AM
+ */
+
+
+Route::name('admin.')
+    ->namespace('ACL\Http\Controllers\Admin')
+    ->middleware(['web', 'locale.db'])
+    ->prefix('api/v1/admin')
+    ->group(function () {
+        Route::resource('admins', 'AdminAdminController');
+        Route::resource('users', 'UserAdminController');
+        Route::resource('contacts', 'ContactAdminController');
 //        Auth::routes();
-//    });
-//
-//Route::group(['namespace' => 'ACL\Http\Controllers', 'middleware' => ['web', 'locale.db']], function () {
+    });
+
+
+
+Route::group(['namespace' => 'ACL\Http\Controllers\Admin', 'middleware' => ['api', 'auth:admin']], function () {
+
 //    Route::get('/admin', 'HomeController@index')->name('admin');
-//
+
 //    Route::group(['middleware' => 'auth:admin', 'prefix' => 'acl'], function () {
-//        Route::resource('admins', 'AdminController');
+////        Route::resource('admins', 'AdminController');
 //
 ////        Route::resource('users' , 'UserAdminController');
 //
@@ -32,4 +38,4 @@
 //            Route::resource('verify-users', 'VerifyUserController');
 //        });
 //    });
-//});
+});
