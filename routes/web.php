@@ -26,11 +26,7 @@ Route::get('dl', function () {
 });
 
 
-
-
-
 Route::get('woocommerce', function () {
-
     $url = 'http://cuongpm.tk:8002';
     $consumer_key = 'ck_752b8da883ed65df1faa38106d80ee38cfd87eb5';
     $consumer_secret = 'cs_9c207d00c8606d755408816d9285b41add33304a';
@@ -55,11 +51,6 @@ Route::get('woocommerce', function () {
 
     $res = $woocommerce->get('orders', $parameters);
     $res = $woocommerce->get('shipping/zones', $parameters);
-//    $res = $woocommerce->get('shipping_methods', $parameters);
-
-    dd($res);
-
-//    $raw_data = fopen(public_path('MOCK_DATA.csv'), 'r');
 
     $email = rand(1, 99999) . 'email@g.vn';
     $firstName = \Illuminate\Support\Str::random(16);
@@ -113,11 +104,72 @@ Route::get('woocommerce', function () {
 
         dump(compact('req', 'url', 'method', 'reqParameters', 'reqHeaders', 'reqBody'));
         dump(compact('code', 'resHeader', 'resBody'));
-dd($res);
-//        return response()->json($res);
-//    } catch (\Automattic\WooCommerce\HttpClient\HttpClientException $exception) {
-//        $exception->getMessage();
-//        $exception->getRequest();
-//        $exception->getResponse();
-//    }
 });
+
+Route::get('vnp', function () {
+    return view('vnp');
+});
+
+Route::post('vnp', function () {
+    $vnp_TmnCode = "Q1LUB9ZD"; //Mã website tại VNPAY
+    $hashSecret = "LNXVGGSETITORLSGEXOBVWSZLZLKDTGS"; //Chuỗi bí mật
+    $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    $vnp_Returnurl = "http://localhost:8006/vnpay_return";
+
+    $vnp_OrderInfo = "fdsf fsdf";
+    $vnp_OrderType = 1100;
+    $vnp_Locale = 'vn';
+    $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+    $vnp_Amount = '100';
+
+
+    $inputData = array(
+        "vnp_TmnCode" => $vnp_TmnCode,
+        "vnp_Amount" => $vnp_Amount,
+        "vnp_Command" => "pay",
+        "vnp_CreateDate" => date('YmdHis'),
+        "vnp_CurrCode" => "VND",
+        "vnp_IpAddr" => $vnp_IpAddr,
+        "vnp_Locale" => $vnp_Locale,
+        "vnp_OrderInfo" => $vnp_OrderInfo,
+        "vnp_OrderType" => $vnp_OrderType,
+        "vnp_ReturnUrl" => $vnp_Returnurl,
+        "vnp_TxnRef" => rand(111111, 9999999),
+        "vnp_Version" => "2.0.0",
+    );
+    ksort($inputData);
+
+    $query = "";
+    $i = 0;
+    $hashdata = "";
+    foreach ($inputData as $key => $value) {
+        if ($i == 1) {
+            $hashdata .= '&' . $key . "=" . $value;
+        } else {
+            $hashdata .= $key . "=" . $value;
+            $i = 1;
+        }
+        $query .= urlencode($key) . "=" . urlencode($value) . '&';
+    }
+    $vnp_Url = $vnp_Url . "?" . $query;
+
+    if (isset($hashSecret)) {
+//        $vnpSecureHash = md5($hashSecret . $hashdata);
+//        $vnp_Url .= 'vnp_SecureHashType=MD5&vnp_SecureHash=' . $vnpSecureHash;
+
+        $vnpSecureHash = hash('sha256', $hashSecret . $hashdata);
+        $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+
+        $returnData = array('code' => '00'
+        , 'message' => 'success'
+        , 'data' => $vnp_Url);
+
+        return response()->json($returnData);
+    }
+});
+
+Route::get('/vnpay_return', function () {
+    return request()->all();
+});
+
+
