@@ -27,8 +27,7 @@ class BlogUpdateRequest extends FormRequest
             'title' => 'required',
 'intro' => 'required',
 'content' => 'required',
-'created_by' => 'required',
-'updated_by' => 'required',
+
 
         ];
     }
@@ -36,7 +35,7 @@ class BlogUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

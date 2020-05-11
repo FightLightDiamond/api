@@ -24,7 +24,7 @@ class CrazyHistoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

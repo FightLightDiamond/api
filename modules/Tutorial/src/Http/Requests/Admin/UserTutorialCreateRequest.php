@@ -33,7 +33,7 @@ class UserTutorialCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

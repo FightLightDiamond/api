@@ -35,7 +35,7 @@ class CrazySpeakHistoryUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

@@ -67,7 +67,7 @@ class SectionAdminController extends Controller
            return new SectionResourceCollection($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -95,7 +95,7 @@ class SectionAdminController extends Controller
             return new SectionResource($section);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -121,7 +121,7 @@ class SectionAdminController extends Controller
             return new SectionResource($section);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -149,7 +149,7 @@ class SectionAdminController extends Controller
             return new SectionResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -174,7 +174,7 @@ class SectionAdminController extends Controller
             return new SectionResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 }

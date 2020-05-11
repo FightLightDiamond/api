@@ -48,6 +48,7 @@
             "App\\": "app/",
             "IO\\": "modules/IO/src",
             "English\\": "modules/English/src",
+            "ETest\\": "modules/ETest/src",
             "GCard\\": "modules/GCard/src",
             "Tutorial\\": "modules/Tutorial/src"
         },

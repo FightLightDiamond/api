@@ -39,7 +39,7 @@ class TutorialService
 
     public function show($id)
     {
-       return $this->repository->find($id);
+       return $this->repository->with(['sections', 'sections.lessons'])->find($id);
     }
 
     public function edit($id)

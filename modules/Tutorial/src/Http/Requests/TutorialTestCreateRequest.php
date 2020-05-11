@@ -24,7 +24,7 @@ class TutorialTestCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

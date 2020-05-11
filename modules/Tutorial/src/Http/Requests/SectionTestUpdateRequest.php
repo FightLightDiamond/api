@@ -24,7 +24,7 @@ class SectionTestUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

@@ -24,7 +24,7 @@ class CrazyUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

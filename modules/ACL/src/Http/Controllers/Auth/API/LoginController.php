@@ -58,7 +58,7 @@ class LoginController extends ATC
             }
 
             $account = $this->getData($request, $data);
-            return new LoginResource($account);
+            return response()->json(new LoginResource($account));
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 401);
         }

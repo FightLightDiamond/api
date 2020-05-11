@@ -24,7 +24,7 @@ class SectionResultCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

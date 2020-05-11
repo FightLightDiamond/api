@@ -24,7 +24,7 @@ class LessonFeedBackCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 
