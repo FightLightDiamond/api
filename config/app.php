@@ -179,6 +179,8 @@ return [
         \Laravel\Passport\PassportServiceProvider::class,
         \SMartins\PassportMultiauth\Providers\MultiauthServiceProvider::class,
         \Carbon\Laravel\ServiceProvider::class,
+
+        NotificationChannels\OneSignal\OneSignalServiceProvider::class,
     ],
 
     /*
