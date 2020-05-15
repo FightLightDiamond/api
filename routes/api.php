@@ -29,7 +29,7 @@ Route::post('image', function () {
     }
 
     if (isset($_REQUEST['image'])) {
-        return fileUpload($_REQUEST['image'], $targetDir);
+        return base64Upload($_REQUEST['image'], $targetDir);
     }
 
     return "Image must is  file format or base64 format";
