@@ -67,7 +67,7 @@ class TutorialAPIController extends Controller
             return new TutorialResourceCollection($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -95,7 +95,7 @@ class TutorialAPIController extends Controller
             return new TutorialResource($tutorial);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -118,10 +118,10 @@ class TutorialAPIController extends Controller
         try {
             $tutorial = $this->service->show($id);
 
-            return new TutorialResource($tutorial);
+            return response()->json(new TutorialResource($tutorial));
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -149,7 +149,7 @@ class TutorialAPIController extends Controller
             return new TutorialResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 
@@ -174,7 +174,7 @@ class TutorialAPIController extends Controller
             return new TutorialResource($data);
         } catch (\Exception $exception) {
             logger($exception);
-            return response()->json($exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
         }
     }
 }

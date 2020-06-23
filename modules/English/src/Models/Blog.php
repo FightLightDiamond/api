@@ -16,7 +16,7 @@ class Blog extends Model implements Transformable
     use ModelsTrait;
 
     public $table = 'blogs';
-    public $fillable = ['title', 'intro', 'content', 'created_by', 'updated_by'];
+    public $fillable = ['title', 'image', 'intro', 'content', 'created_by', 'updated_by'];
 
     public $fileUpload = ['image' => 1];
     protected $pathUpload = ['image' => '/images/blogs'];
@@ -24,7 +24,7 @@ class Blog extends Model implements Transformable
     protected $thumbImage = [
         'image' => [
             '/thumbs/' => [
-
+                    
             ]
         ]
     ];
