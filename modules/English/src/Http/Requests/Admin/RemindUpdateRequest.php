@@ -33,7 +33,7 @@ class RemindUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use ACL\ACLServiceProvider;
 use English\EnglishServiceProvider;
+use ETest\ETestServiceProvider;
 use GCard\GCardServiceProvider;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Schema;
@@ -44,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(ModularizationServiceProvider::class);
         $this->app->register(TutorialServiceProvider::class);
         $this->app->register(GCardServiceProvider::class);
+        $this->app->register(ETestServiceProvider::class);
         //{RegisterServiceProvider}
     }
 }

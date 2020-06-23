@@ -93,11 +93,13 @@ class CrazyTestAPIController
     public function listening($id)
     {
         $user_id = auth('api')->id();
-        $crazy_id = $id;
 
-        $history = CrazyListenHistory::firstOrCreate(compact('user_id', 'crazy_id'));
-        $history->increment('count', 1);
-        $history->save();
+        if($user_id) {
+            $crazy_id = $id;
+            $history = CrazyListenHistory::firstOrCreate(compact('user_id', 'crazy_id'));
+            $history->increment('count', 1);
+            $history->save();
+        }
 
         $data = $this->repository->with('details:id,crazy_id,sentence,meaning,time')->find($id);
         return new MasterResource($data);

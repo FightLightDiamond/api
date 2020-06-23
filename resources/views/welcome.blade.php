@@ -97,4 +97,24 @@
             </div>
         </div>
     </body>
+<script>
+    addEventListener('load', function () {
+        let sw = navigator.serviceWorker.register('./sw.js')
+        console.log(sw);
+    })
+
+    async function subscribe() {
+        let sw = await navigator.serviceWorker.ready;
+        let push = await sw.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: 'Todovvv'
+        });
+        console.log(JSON.stringify(push))
+    }
+
+
+    const push = require('web-push')
+    push.generateVAPIDKeys();
+    console.log(push)
+</script>
 </html>

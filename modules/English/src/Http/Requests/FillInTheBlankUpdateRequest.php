@@ -24,7 +24,7 @@ class FillInTheBlankUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

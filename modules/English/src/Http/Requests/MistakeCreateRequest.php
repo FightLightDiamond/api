@@ -24,7 +24,7 @@ class MistakeCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

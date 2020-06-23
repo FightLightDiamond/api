@@ -5,7 +5,6 @@ namespace Tutorial;
 use Illuminate\Support\ServiceProvider;
 use Tutorial\Http\Repositories\UserTutorialRepository;
 use Tutorial\Http\Repositories\UserTutorialRepositoryEloquent;
-use Tutorial\Http\ViewComposers\TutorialComposer;
 use Tutorial\Http\Repositories\LessonCommentRepository;
 use Tutorial\Http\Repositories\LessonCommentRepositoryEloquent;
 use Tutorial\Http\Repositories\LessonFeedBackRepository;
@@ -46,22 +45,6 @@ class TutorialServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'tut');
         $this->loadJsonTranslationsFrom(__DIR__ . '/../resources/lang');
 
-        view()->composer([
-            'tut::section.index',
-            'tut::section.create',
-            'tut::section.update',
-            'tut::lesson.create',
-            'tut::lesson.update',
-            'tut::lesson-test.index',
-            'tut::lesson-test.create',
-            'tut::lesson-test.update',
-            'tut::lesson-result.index',
-            'tut::lesson-result.create',
-            'tut::lesson-result.update',
-            'tut::tutorial-result.index',
-            'tut::tutorial-result.update',
-            'tut::layouts.components.tutorial'
-        ], TutorialComposer::class);
     }
 
     /**

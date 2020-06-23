@@ -26,8 +26,6 @@ class CrazyService
         return $this->repository->filterGet($input);
     }
 
-
-
     public function store($input)
     {
         return $this->repository->store($input);
@@ -35,12 +33,13 @@ class CrazyService
 
     public function show($id)
     {
-       return $this->repository->find($id);
+        $relationship = ['details'];
+        return $this->repository->with($relationship)->find($id);
     }
 
     public function edit($id)
     {
-       return $this->repository->find($id);
+        return $this->repository->find($id);
     }
 
     public function update($input, $id)
@@ -54,7 +53,7 @@ class CrazyService
     {
         $crazy = $this->repository->find($id);
 
-		if (! empty($crazy)) {
+        if (!empty($crazy)) {
             $this->repository->delete($id);
         }
 

@@ -24,7 +24,7 @@ class LessonSubCommentCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

@@ -62,9 +62,9 @@ class CrazyAPIController extends Controller
     {
         try {
             $input = $request->all();
-            $data = $this->service->index($input);
+            $crazy = $this->service->index($input);
 
-            return CrazyResource::collection($data);
+            return CrazyResource::collection($crazy);
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -118,7 +118,7 @@ class CrazyAPIController extends Controller
         try {
             $crazy = $this->service->show($id);
 
-            return new CrazyResource($crazy);
+            return response()->json(new CrazyResource($crazy));
         } catch (\Exception $exception) {
             logger($exception);
             return response()->json($exception->getMessage(), 500);
@@ -144,7 +144,7 @@ class CrazyAPIController extends Controller
     {
         $input = $request->all();
         try {
-            $data = $this->service->update($input, $id);
+            $crazy = $this->service->update($input, $id);
 
             return response()->json(new CrazyResource($crazy));
         } catch (\Exception $exception) {
@@ -169,7 +169,7 @@ class CrazyAPIController extends Controller
     public function destroy($id)
     {
         try {
-            $data = $this->service->destroy($id);
+            $crazy = $this->service->destroy($id);
 
             return response()->json(new CrazyResource($crazy));
         } catch (\Exception $exception) {

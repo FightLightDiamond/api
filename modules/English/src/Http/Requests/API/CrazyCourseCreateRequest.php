@@ -28,8 +28,7 @@ class CrazyCourseCreateRequest extends FormRequest
 'img' => 'required',
 'description' => 'required',
 'is_active' => 'required',
-'created_by' => 'required',
-'updated_by' => 'required',
+
 
         ];
     }
@@ -37,7 +36,7 @@ class CrazyCourseCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

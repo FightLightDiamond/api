@@ -24,7 +24,7 @@ class TutorialResultCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

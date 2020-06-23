@@ -37,7 +37,7 @@ class SectionUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

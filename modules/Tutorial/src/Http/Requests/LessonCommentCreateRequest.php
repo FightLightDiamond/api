@@ -24,7 +24,7 @@ class LessonCommentCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
         ];
     }
 

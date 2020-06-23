@@ -30,8 +30,7 @@ class LessonCreateRequest extends FormRequest
 'section_id' => 'required',
 'views' => 'required',
 'last_view' => 'required',
-'created_by' => 'required',
-'updated_by' => 'required',
+
 'is_active' => 'required',
 'no' => 'required',
 
@@ -41,7 +40,7 @@ class LessonCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
         ];
     }
 }

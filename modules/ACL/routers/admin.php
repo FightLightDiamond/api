@@ -9,7 +9,7 @@
 
 Route::name('admin.')
     ->namespace('ACL\Http\Controllers\Admin')
-    ->middleware(['web', 'locale.db'])
+    ->middleware(['api', 'auth:admin'])
     ->prefix('api/v1/admin')
     ->group(function () {
         Route::resource('admins', 'AdminAdminController');
