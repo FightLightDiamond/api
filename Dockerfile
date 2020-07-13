@@ -18,17 +18,14 @@ RUN apt-get update &&\
     ln -s /dev/stderr /var/log/apache2/error_atslp.log &&\
     ln -s /dev/stderr /var/log/apache2/error_crmlp.log &&\
     ln -s /dev/stderr /var/log/apache2/error_firstlp.log &&\
-    ln -s /dev/stderr /var/log/apache2/error_top.log \
+    ln -s /dev/stderr /var/log/apache2/error_top.log
 
-RUN apt-get update -y \
-RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file \
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
-RUN docker-php-ext-configure gmp \
-RUN docker-php-ext-install gmp \
+RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp
+RUN docker-php-ext-install gmp
 
-RUN pecl install -o -f redis \
-&&  rm -rf /tmp/pear \
-&&  docker-php-ext-enable redis
+RUN pecl install -o -f redis &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis
 
 
 CMD ["/usr/local/bin/run.sh"]

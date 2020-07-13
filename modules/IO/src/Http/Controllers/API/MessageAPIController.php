@@ -48,18 +48,22 @@ class MessageAPIController  extends Controller
     public function show($id)
     {
         $message = $this->repository->find($id);
+
         if (empty($message)) {
             return new MessageResource([$message]);
         }
+
         return new MessageResource($message);
     }
 
     public function edit($id)
     {
         $message = $this->repository->find($id);
+
         if (empty($message)) {
             return new MessageResource([$message]);
         }
+
         return new MessageResource($message);
     }
 
@@ -71,6 +75,7 @@ class MessageAPIController  extends Controller
             return new MessageResource([$message]);
         }
         $data = $this->repository->change($input, $message);
+
         return new MessageResource($data);
     }
 
@@ -81,6 +86,7 @@ class MessageAPIController  extends Controller
             return new MessageResource($message);
         }
         $data = $this->repository->delete($id);
+
         return new MessageResource([$data]);
     }
 }

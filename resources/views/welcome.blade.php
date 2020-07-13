@@ -95,26 +95,38 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
+                <div id="app">
+                    <aoe-random/>
+                </div>
         </div>
+
+
     </body>
-<script>
-    addEventListener('load', function () {
-        let sw = navigator.serviceWorker.register('./sw.js')
-        console.log(sw);
-    })
+    <script src="{{asset('js/app.js')}}"></script>
+{{--    <script type="module" >--}}
+{{--        import { getTeamRandom } from 'aoerandom';--}}
+{{--        // const {getTeamRandom} = require('aoerandom')--}}
+{{--        const countries = getTeamRandom(8);--}}
+{{--        console.log(countries);--}}
+{{--    </script>--}}
+{{--<script>--}}
+{{--    addEventListener('load', function () {--}}
+{{--        let sw = navigator.serviceWorker.register('./sw.js')--}}
+{{--        console.log(sw);--}}
+{{--    })--}}
 
-    async function subscribe() {
-        let sw = await navigator.serviceWorker.ready;
-        let push = await sw.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: 'Todovvv'
-        });
-        console.log(JSON.stringify(push))
-    }
+{{--    async function subscribe() {--}}
+{{--        let sw = await navigator.serviceWorker.ready;--}}
+{{--        let push = await sw.pushManager.subscribe({--}}
+{{--            userVisibleOnly: true,--}}
+{{--            applicationServerKey: 'Todovvv'--}}
+{{--        });--}}
+{{--        console.log(JSON.stringify(push))--}}
+{{--    }--}}
 
 
-    const push = require('web-push')
-    push.generateVAPIDKeys();
-    console.log(push)
-</script>
+{{--    const push = require('web-push')--}}
+{{--    push.generateVAPIDKeys();--}}
+{{--    console.log(push)--}}
+{{--</script>--}}
 </html>
