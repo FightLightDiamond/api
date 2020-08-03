@@ -57,7 +57,6 @@
             "English\\": "modules/English/src",
             "ETest\\": "modules/ETest/src",
             "GCard\\": "modules/GCard/src",
-            "SMOMO\\": "modules/SMOMO/src",
             "Tutorial\\": "modules/Tutorial/src"
         },
         "classmap": [
