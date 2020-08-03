@@ -11,7 +11,6 @@ use Illuminate\Support\ServiceProvider;
 use IO\IOServiceProvider;
 use Laravel\Passport\Passport;
 use Cuongpm\Modularization\ModularizationServiceProvider;
-use SMOMO\SMOMOServiceProvider;
 use Tutorial\TutorialServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -43,7 +42,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(EnglishServiceProvider::class);
         $this->app->register(IOServiceProvider::class);
         $this->app->register(ModularizationServiceProvider::class);
-        $this->app->register(SMOMOServiceProvider::class);
         $this->app->register(TutorialServiceProvider::class);
         $this->app->register(GCardServiceProvider::class);
         $this->app->register(ETestServiceProvider::class);

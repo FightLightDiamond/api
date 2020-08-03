@@ -26,7 +26,6 @@ class Heroes extends Migration
             $table->unsignedInteger('def');
             $table->unsignedInteger('hp');
             $table->unsignedInteger('spd');
-            $table->string('atk');
             $table->dateTime('publish_time')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

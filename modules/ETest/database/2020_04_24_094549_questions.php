@@ -17,7 +17,8 @@ class Questions extends Migration
             $table->id();
             $table->tinyInteger('type');
             $table->string('question');
-            $table->string('answer');
+            $table->json('replies');
+            $table->string('answers');
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('time')->default(15);
             $table->tinyInteger('level')->default(1);

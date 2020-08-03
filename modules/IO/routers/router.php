@@ -44,3 +44,11 @@ Route::group([
     Route::post('conversation/send', 'ContactAPIController@send');
 //        Route::resource('messages' , 'MessageApiController');
     });
+
+Route::get('marco', function () {
+    $m = new \IO\Http\Controllers\MarcoTrait();
+//    \IO\Http\Controllers\MarcoTrait::addMacro('fullName', function () {
+//        return $this->firstName . ' ' . $this->lastName;
+//    });
+    return $m->fullName(3131);
+});

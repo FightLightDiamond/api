@@ -190,3 +190,60 @@ Route::get('avatar', function () {
 });
 
 
+Route::get('pdf', function () {
+    $font = public_path('th-sarabun-new-4-cufonfonts/THSarabunNew.ttf');
+    $fontb = public_path('th-sarabun-new-4-cufonfonts/THSarabunNew Bold.ttf');
+
+    $html = "
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>
+    <style>
+        @font-face {
+            font-family: 'THSarabunNew' !important;
+            src: url($font) format('truetype') !important;
+        }
+        @font-face {
+            font-family: 'THSarabunNew Bold' !important;
+            src: url($fontb) format('truetype') !important;
+        }
+        p {
+            font-family: 'THSarabunNew' !important;
+            font-size: 40px;
+        }
+        span {
+            font-family: 'THSarabunNew Bold' !important;
+        }
+    </style>
+<body>
+<p style='color: #1d68a7;  font-weight: bolder; font-style: italic;'>
+แปลภาษา
+บริการฟรีของ Google แปลคำวลีและ
+</p>
+<p>
+แปลภาษา
+บริการฟรีของ Google แปลคำวลีและ
+</p>
+
+<span>แปลภาษา
+บริการฟรีของ Google แปลคำวลีและ</span>
+    <span>แปลภาษา
+บริการฟรีของ Google แปลคำวลีและ</span>
+</body>
+    ";
+
+
+// instantiate and use the dompdf class
+//    $options = new \Dompdf\Options();
+//    $options->set('defaultFont', 'Courier');
+    $dompdf = new \Dompdf\Dompdf();
+
+    $dompdf->loadHtml($html);
+
+// (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+    $dompdf->render();
+
+// Output the generated PDF to Browser
+    $dompdf->stream();
+});

@@ -20,7 +20,7 @@ class ShareRooms extends Migration
             $table->unsignedBigInteger('room_id');
             $table->unsignedTinyInteger('province');
             $table->unsignedTinyInteger('max_age');
-            $table->unsignedTinyInteger('max_age');
+            $table->unsignedTinyInteger('min_age');
             $table->tinyInteger('sex');
             $table->text('note');
             $table->timestamps();
